@@ -14,6 +14,13 @@ exports.createPages = ({ graphql, actions }) => {
             }
           }
         }
+        allDatoCmsAlbum {
+          edges {
+            node {
+              slug
+            }
+          }
+        }
       }
     `).then(result => {
       result.data.allDatoCmsArticle.edges.map(({ node: article }) => {
@@ -22,6 +29,18 @@ exports.createPages = ({ graphql, actions }) => {
           component: path.resolve(`./src/templates/article.js`),
           context: {
             slug: article.slug,
+          },
+        })
+      })
+      resolve()
+    })
+    .then(result => {
+      result.data.allDatoCmsAlbum.edges.map(({ node: album }) => {
+        createPage({
+          path: `albums/${album.slug}`,
+          component: path.resolve(`./src/templates/album.js`),
+          context: {
+            slug: album.slug,
           },
         })
       })
