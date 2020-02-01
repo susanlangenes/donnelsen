@@ -14,7 +14,7 @@ export default ({ data }) => (
         <p className="sheet__lead">{data.datoCmsAlbum.description}</p>
         <div className="sheet__slider">
           <Slider infinite={true} slidesToShow={2} arrows>
-            {data.datoCmsAlbum.gallery.map(({ fluid }) => (
+            {data.datoCmsAlbum.images.map(({ fluid }) => (
               <img alt={data.datoCmsAlbum.title} key={fluid.src} src={fluid.src} />
             ))}
           </Slider>
